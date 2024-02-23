@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://product-db:5432/productdb
+    username: postgres
+    password: motdepasse
+  jpa:
+    hibernate:
+      ddl-auto: update
+      connection:
+        url: jdbc:postgresql://product-db:5432/productdb
+        username: postgres
+        password: motdepasse
+    show-sql: true
+
+logging:
+  level:
+    org.springframework: info
+    org.hibernate: info
+
+server:
+  port: 8080
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: 'actuator, *'
+
+# swagger-ui custom path
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  show-actuator: true
