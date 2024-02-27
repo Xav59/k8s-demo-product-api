@@ -1,0 +1,48 @@
+# K8s Demo
+
+## Description
+
+This project is a demonstration on how to deploy a basic application on a k8s cluster.
+
+The application is made of an API and a Postgresql database.
+
+The application itself is not important. The goal is to focus on its deployment with the following steps:
+1. Start with a `docker-compose`
+2. Use k8s yaml config files
+3. Use `helm`
+
+## Table of Contents
+
+- [K8s Demo](#k8s-demo)
+  - [Description](#description)
+  - [Table of Contents](#table-of-contents)
+  - [Pre-requisites](#pre-requisites)
+  - [Docker compose](#docker-compose)
+  - [k8s config files](#k8s-config-files)
+  - [Helm](#helm)
+
+## Pre-requisites
+
+- Docker
+- Minikube
+- Helm
+
+## Docker compose
+
+A single file `docker-compose.yaml` that declares the 2 services and sets the environment variables. No volume needed.
+
+## k8s config files
+
+As we don't use any Docker repository, the Docker image has to be built inside minikube to be available for deployment.
+This is the job of the `build-image.sh` script.
+
+This deployments use neither `config-map` nor `secrets` files.
+
+## Helm
+
+In the same way as in the k8s case, as we don't use any Docker repository, the Docker image has to be built inside minikube to be available for deployment.
+This is the job of the `build-image.sh` script.
+
+In order for the services to communicate, it is necessary to set the name of each service in the `service.yaml` file.
+Here, we have used the value of the `<chart>.name` property rather than the default `<chart>.fullname` that is used when using `helm create`.
+

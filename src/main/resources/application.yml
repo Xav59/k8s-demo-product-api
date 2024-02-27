@@ -1,16 +1,16 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://product-db:5432/productdb
-    username: postgres
-    password: motdepasse
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://product-db:5432/productdb}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:motdepasse}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
       connection:
-        url: jdbc:postgresql://product-db:5432/productdb
-        username: postgres
-        password: motdepasse
+        url: ${spring.datasource.url}
+        username: ${spring.datasource.username}
+        password: ${spring.datasource.password}
     show-sql: true
 
 logging:
